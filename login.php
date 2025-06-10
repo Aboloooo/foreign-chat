@@ -1,5 +1,5 @@
 <?php
-include_once("../Library/MyLibrary.php");
+include_once("library.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,9 +15,9 @@ if(isset($_POST['submit'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $loginCheck = $connection-prepare('select * from users where username = ?');
+    $loginCheck = $connection->prepare('select * from users where username = ?');
     $loginCheck->bind_param('s' , $username);
-    $loginCheck->execute();
+    if($loginCheck->execute()){
     $result = $loginCheck->get_result();
     if($row = $result->fetch_assoc()){
         $userID = $row['userID'];
@@ -30,6 +30,9 @@ if(isset($_POST['submit'])){
             header("location: index.php");
         }
     }
+}else{
+    echo "user not found";
+}
 }
 
 if(isset($_POST['submitCreation'])){
@@ -37,7 +40,14 @@ if(isset($_POST['submitCreation'])){
     $newPass = $_POST['passwordCreation'];
     $newPassConfir = $_POST['passwordCreationConfirm'];
 
-    if($newPass == )
+    if($newPass == $newPassConfir){
+        $signup = $connection->prepare('insert into users(username,password ) values(?,?)');
+        $signup->bind_param('ss', $newUsername,$newPassConfir);
+       if($signup->execute()){
+        echo "user created successfully.";
+       } ;
+
+    }
 }
 ?>
 

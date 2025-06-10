@@ -5,7 +5,7 @@ session_start();
 $host = 'localhost';
 $username = 'root';
 $password = '';
-$database = 'foreign_chat';
+$database = 'chat';
 $connection = mysqli_connect($host, $username, $password, $database);
 
 if (!isset($_SESSION["userLogin"])) {
