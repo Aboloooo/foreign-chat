@@ -19,11 +19,12 @@ if(isset($_POST['submit'])){
     $loginCheck->bind_param('s' , $username);
     $loginCheck->execute();
     $result = $loginCheck->get_result();
-    while($row = $result->fetch_assoc()){
+    if($row = $result->fetch_assoc()){
         $userID = $row['userID'];
         $username = $row['username'];
         $userPass = $row['password'];
-        
+
+        if($password ==)
     }
 }
 ?>
