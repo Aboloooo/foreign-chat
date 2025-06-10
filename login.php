@@ -24,8 +24,20 @@ if(isset($_POST['submit'])){
         $username = $row['username'];
         $userPass = $row['password'];
 
-        if($password ==)
+        if($password == $userPass){
+            $_SESSION["userLogin"] = true;
+            $_SESSION["username"] = $username;
+            header("location: index.php");
+        }
     }
+}
+
+if(isset($_POST['submitCreation'])){
+    $newUsername = $_POST['usernameCreation'];
+    $newPass = $_POST['passwordCreation'];
+    $newPassConfir = $_POST['passwordCreationConfirm'];
+
+    if($newPass == )
 }
 ?>
 
